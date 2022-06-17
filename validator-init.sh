@@ -13,3 +13,6 @@ else
         echo "Copying ${key}"
     done
 fi
+
+# ensure teku access for new keys
+chmod -R 777 /data/validator

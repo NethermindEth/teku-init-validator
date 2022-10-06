@@ -1,18 +1,18 @@
 #!/bin/bash
 set -e
 
-if [[ "$(ls /data/validators/keys)" ]]; then
+if [[ "$(ls /data/keys)" ]]; then
     echo "Keystore directory is not empty. Skipping." && exit 0
 else
-    mkdir -p /data/validator/keys /data/validator/passwords
+    mkdir -p /data/keys /data/passwords
     cd /keystore/validator_keys
     for key in *; do
         FILENAME=`echo ${key} | sed 's/.json//g'`
-        cp ${key} "/data/validator/keys/${FILENAME}.json"
-        cp ../keystore_password.txt "/data/validator/passwords/${FILENAME}.txt"
+        cp ${key} "/data/keys/${FILENAME}.json"
+        cp ../keystore_password.txt "/data/passwords/${FILENAME}.txt"
         echo "Copying ${key}"
     done
 fi
 
 # ensure teku access for new keys
-chmod -R 777 /data/validator
+chmod -R 777 /data
